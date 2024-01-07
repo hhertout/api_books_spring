@@ -3,9 +3,16 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: sh run.sh
     container_name: api_java
+    env_file:
+      - .env
+    volumes:
+      - ./src:/app/src
     ports:
       - "8080:8080"
+      - "35729:35729"
+      - "5005:5005"
 
   db:
     image: postgres

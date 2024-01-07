@@ -1,5 +1,7 @@
 FROM maven
 
+RUN apt update && apt install -y inotify-tools
+
 WORKDIR /app
 
 COPY mvnw .
@@ -10,4 +12,4 @@ COPY src src
 RUN mvn install -DskipTests
 RUN mvn compiler:compile
 
-CMD ["mvn", "spring-boot:run"]
+COPY run.sh run.sh
